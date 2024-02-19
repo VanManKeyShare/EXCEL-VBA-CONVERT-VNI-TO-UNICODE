@@ -1,4 +1,19 @@
 
+Sub ConvertAllSheets()
+    Dim ws As Worksheet
+    For Each ws In ThisWorkbook.Worksheets
+        Call ConvertSheet(ws)
+    Next ws
+End Sub
+
+Sub ConvertSheet(ws As Worksheet)
+    Dim rng As Range
+    For Each rng In ws.UsedRange
+        rng.Value = VNI_TO_UNICODE(rng.Value)
+		rng.Font.Name = "Arial"
+    Next rng
+End Sub
+
 Public Function VNI_TO_UNICODE(VMK_DATA As String) As String
 
     Dim I As Integer
